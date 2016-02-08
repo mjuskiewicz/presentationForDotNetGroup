@@ -1,0 +1,30 @@
+﻿<Window x:Class="Prezentacja.UI.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Views="clr-namespace:Prezentacja.UI.Views"
+        Title="Shell" Height="450" Width="425" Background="White" FontSize="18">
+    <Window.Resources>
+        
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+
+        <StackPanel DockPanel.Dock="Bottom">
+            <Views:StatusView/>
+        </StackPanel>
+        <TabControl DockPanel.Dock="Top" Margin="10">
+            <TabItem Header="Kontakty">
+                <Views:UsersControls Background="#7FBA00" Padding="5" />
+            </TabItem>
+            <TabItem Header="Ustawienia">
+                <Views:SettingsView Background="#02A4EF" Padding="5" /> 
+            </TabItem>
+            <TabItem Header="Wyślij SMS">
+                <Views:SendSmsView  Background="#FEB800" Padding="5" />
+            </TabItem>
+            <TabItem Header="Odebrane SMS" IsEnabled="False">
+                <Views:ReceivedSmsView />
+            </TabItem>
+        </TabControl>
+
+    </DockPanel>
+</Window>

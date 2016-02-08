@@ -1,0 +1,44 @@
+﻿using Prezentacja.Common;
+
+namespace Prezentacja.DTO
+{
+    public class Message : BaseEntity
+    {
+        private string _phoneNumber;
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set
+            {
+                if (_phoneNumber == null) return;
+                _phoneNumber = value;
+                RaisePropertyChanged(() => PhoneNumber);
+            }
+        }
+
+        private string _text;
+        public string Text
+        {
+            get { return _text; }
+            set
+            {
+                if (_text == value) return;
+                _text = value;
+                RaisePropertyChanged(() => Text);
+            }
+        }
+
+        private int _status;
+        public int Status
+        {
+            get { return _status; }
+            set
+            {
+                if (_status == value) return;
+                _status = value;
+                RaisePropertyChanged(() => Status);
+            }
+        }
+        
+    }
+}
