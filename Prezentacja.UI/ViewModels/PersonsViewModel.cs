@@ -1,138 +1,24 @@
-﻿using Prezentacja.Common;
+﻿using System.Collections.Generic;
+using System.Windows;
+using Prezentacja.Common;
 using Prezentacja.DTO;
 using Prezentacja.Service;
-using System.Collections.Generic;
-using System.Windows;
 
 namespace Prezentacja.UI.ViewModels
 {
     public class PersonsViewModel : NotificationObject
     {
-        #region Properties
-
+        private bool _isVisibleForm;
         private string _errorMessage;
-        public string ErrorMessage
-        {
-            get { return _errorMessage; }
-            private set
-            {
-                if (_errorMessage == value) return;
-                _errorMessage = value;
-                RaisePropertyChanged(() => ErrorMessage);
-            }
-        }
-
         private string _successMessage;
-        public string SuccessMessage
-        {
-            get { return _successMessage; }
-            private set 
-            {
-                if (_successMessage == value) return;
-                _successMessage = value;
-                RaisePropertyChanged(() => SuccessMessage);
-            }
-        }
-        
-        private DelegateCommand _saveCommand;
-        public DelegateCommand SaveCommand
-        {
-            get { return _saveCommand; }
-            private set 
-            {
-                if (_saveCommand == value) return;
-                _saveCommand = value;
-                RaisePropertyChanged(() => SaveCommand);
-            }
-        }
-
-        private DelegateCommand _cancelCommand;
-        public DelegateCommand CancelCommand
-        {
-            get { return _cancelCommand; }
-            private set
-            {
-                if (_cancelCommand == value) return;
-                _cancelCommand = value;
-                RaisePropertyChanged(() => CancelCommand);
-            }
-        }
-
-        private DelegateCommand _deleteCommand;
-        public DelegateCommand DeleteCommand
-        {
-            get { return _deleteCommand; }
-            private set
-            {
-                if (_deleteCommand == value) return;
-                _deleteCommand = value;
-                RaisePropertyChanged(() => DeleteCommand);
-            }
-        }
-
-        private DelegateCommand _editCommand;
-
-        public DelegateCommand EditCommand
-        {
-            get { return _editCommand; }
-            private set
-            {
-                if (_editCommand == value) return;
-                _editCommand = value;
-                RaisePropertyChanged(() => EditCommand);
-            }
-        }
-
         private DelegateCommand _addCommand;
-
-        public DelegateCommand AddCommand
-        {
-            get { return _addCommand; }
-            private set
-            {
-                if (_addCommand == value) return;
-                _addCommand = value;
-                RaisePropertyChanged(() => AddCommand);
-            }
-        }
-
+        private DelegateCommand _cancelCommand;
+        private DelegateCommand _deleteCommand;
+        private DelegateCommand _editCommand;
+        private DelegateCommand _saveCommand;
         private PersonsRepository _usersRepository;
-
-        public List<Person> Persons
-        {
-            get { return _usersRepository.GetAll(); }
-        }
-
         private Person _editedPerson;
 
-        public Person EditedPerson
-        {
-            get { return _editedPerson; }
-            set 
-            {
-                if (_editedPerson == value) return;
-                _editedPerson = value;
-                RaisePropertyChanged(() => EditedPerson);
-                EditCommand.UpdateCanExecuteState();
-                DeleteCommand.UpdateCanExecuteState();
-            }
-        }
-
-        private bool _isVisibleForm;
-
-        public bool IsVisibleForm
-        {
-            get { return _isVisibleForm; }
-            private set 
-            {
-                if (_isVisibleForm == value) return;
-                _isVisibleForm = value;
-                RaisePropertyChanged(() => IsVisibleForm);
-            }
-        }
-        
-        #endregion
-        
         public PersonsViewModel(PersonsRepository usersRepository)
         {
             _usersRepository = usersRepository;
@@ -143,6 +29,148 @@ namespace Prezentacja.UI.ViewModels
             SaveCommand = new DelegateCommand(OnSave, () => true);
         }
 
+        public string ErrorMessage
+        {
+            get
+            {
+                return _errorMessage;
+            }
+
+            private set
+            {
+                if (_errorMessage == value) return;
+                _errorMessage = value;
+                RaisePropertyChanged(() => ErrorMessage);
+            }
+        }
+
+        public string SuccessMessage
+        {
+            get
+            {
+                return _successMessage;
+            }
+
+            private set
+            {
+                if (_successMessage == value) return;
+                _successMessage = value;
+                RaisePropertyChanged(() => SuccessMessage);
+            }
+        }
+        
+        public DelegateCommand SaveCommand
+        {
+            get
+            {
+                return _saveCommand;
+            }
+
+            private set
+            {
+                if (_saveCommand == value) return;
+                _saveCommand = value;
+                RaisePropertyChanged(() => SaveCommand);
+            }
+        }
+        
+        public DelegateCommand CancelCommand
+        {
+            get
+            {
+                return _cancelCommand;
+            }
+
+            private set
+            {
+                if (_cancelCommand == value) return;
+                _cancelCommand = value;
+                RaisePropertyChanged(() => CancelCommand);
+            }
+        }
+        
+        public DelegateCommand DeleteCommand
+        {
+            get
+            {
+                return _deleteCommand;
+            }
+
+            private set
+            {
+                if (_deleteCommand == value) return;
+                _deleteCommand = value;
+                RaisePropertyChanged(() => DeleteCommand);
+            }
+        }
+        
+        public DelegateCommand EditCommand
+        {
+            get
+            {
+                return _editCommand;
+            }
+
+            private set
+            {
+                if (_editCommand == value) return;
+                _editCommand = value;
+                RaisePropertyChanged(() => EditCommand);
+            }
+        }
+        
+        public DelegateCommand AddCommand
+        {
+            get
+            {
+                return _addCommand;
+            }
+
+            private set
+            {
+                if (_addCommand == value) return;
+                _addCommand = value;
+                RaisePropertyChanged(() => AddCommand);
+            }
+        }
+        
+        public List<Person> Persons
+        {
+            get { return _usersRepository.GetAll(); }
+        }
+        
+        public Person EditedPerson
+        {
+            get
+            {
+                return _editedPerson;
+            }
+
+            set
+            {
+                if (_editedPerson == value) return;
+                _editedPerson = value;
+                RaisePropertyChanged(() => EditedPerson);
+                EditCommand.UpdateCanExecuteState();
+                DeleteCommand.UpdateCanExecuteState();
+            }
+        }
+        
+        public bool IsVisibleForm
+        {
+            get
+            {
+                return _isVisibleForm;
+            }
+
+            private set
+            {
+                if (_isVisibleForm == value) return;
+                _isVisibleForm = value;
+                RaisePropertyChanged(() => IsVisibleForm);
+            }
+        }
+
         private void OnDelete()
         {
             _usersRepository.DeleteById(EditedPerson.Id);
@@ -151,7 +179,7 @@ namespace Prezentacja.UI.ViewModels
 
         private void OnAdd()
         {
-            EditedPerson = new Person();   
+            EditedPerson = new Person();
             IsVisibleForm = true;
         }
 
@@ -165,7 +193,7 @@ namespace Prezentacja.UI.ViewModels
         {
             IsVisibleForm = true;
         }
-        
+
         private void OnSave()
         {
             if (EditedPerson.Id == 0)

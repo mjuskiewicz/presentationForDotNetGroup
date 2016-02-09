@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DelegateCommand.cs" />
+    <Compile Include="DelegateCommandOfT.cs" />
     <Compile Include="Helpers\General.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IRepository.cs" />

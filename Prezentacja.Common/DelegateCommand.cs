@@ -8,8 +8,6 @@ namespace Prezentacja.Common
         private readonly Func<bool> _canExecute = null;
         private readonly Action _executeAction = null;
 
-        public event EventHandler CanExecuteChanged;
-
         public DelegateCommand(Action execute)
             : this(execute, null)
         {
@@ -20,6 +18,8 @@ namespace Prezentacja.Common
             _canExecute = canExecute;
             _executeAction = executeAction;
         }
+
+        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
@@ -39,48 +39,6 @@ namespace Prezentacja.Common
             if (_executeAction != null)
                 _executeAction();
             UpdateCanExecuteState();
-        }
-    }
-
-    public class DelegateCommand<T> : ICommand where T : class
-    {
-        private readonly Func<T, bool> _canExecute;
-        private readonly Action<T> _execute;
-
-        public event EventHandler CanExecuteChanged;
-
-        public DelegateCommand(Action<T> execute)
-            : this(execute, null)
-        {
-        }
-
-        public DelegateCommand(Action<T> execute, Func<T, bool> canExecute)
-        {
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            if (_canExecute == null)
-            {
-                return true;
-            }
-
-            return _canExecute(parameter as T);
-        }
-
-        public void Execute(object parameter)
-        {
-            _execute(parameter as T);
-        }
-
-        public void UpdateCanExecuteState(T parameter)
-        {
-            if (CanExecuteChanged != null)
-            {
-                CanExecuteChanged(this, new EventArgs());
-            }
         }
     }
 }

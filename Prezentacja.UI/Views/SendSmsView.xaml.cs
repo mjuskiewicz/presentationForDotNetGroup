@@ -1,18 +1,18 @@
-﻿using Prezentacja.Service;
+﻿using System.Windows.Controls;
+using Prezentacja.Service;
 using Prezentacja.UI.ViewModels;
-using System.Windows.Controls;
 
 namespace Prezentacja.UI.Views
 {
     /// <summary>
-    /// Interaction logic for SendSmsView.xaml
+    /// Interaction logic for SendSMSView.xaml
     /// </summary>
     public partial class SendSmsView : UserControl
     {
         public SendSmsView()
         {
             InitializeComponent();
-            this.DataContext = new SendSmsViewModel(new PersonsRepository(), Modem.ModemConnection.Instance);
+            DataContext = new SendSmsViewModel(new PersonsRepository(), Modem.ModemConnection.Instance);
         }
     }
 }

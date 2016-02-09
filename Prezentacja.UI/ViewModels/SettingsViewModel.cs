@@ -1,23 +1,28 @@
-﻿using Prezentacja.Common;
+﻿using System.Collections.Generic;
+using Prezentacja.Common;
 using Prezentacja.Common.Helpers;
 using Prezentacja.Modem;
-using System.Collections.Generic;
 
 namespace Prezentacja.UI.ViewModels
 {
-    class SettingsViewModel : NotificationObject
+    public class SettingsViewModel : NotificationObject
     {
-        #region Properties
-
         private string _comPort;
         private int? _dataBit = 8;
         private int? _transferSpeed = 9600;
         private int? _bufforSize = 1024;
-        
+
         private DelegateCommand _connectCommand;
         private DelegateCommand _disconnectCommand;
         private ModemConnection _modemConnection;
-        
+
+        public SettingsViewModel()
+        {
+            ConnectCommand = new DelegateCommand(OnConnect, CanConnect);
+            DisconnectCommand = new DelegateCommand(OnDisconnect, CanDisconnect);
+            _modemConnection = ModemConnection.Instance;
+        }
+
         public List<string> AvailableComPorts
         {
             get
@@ -28,7 +33,11 @@ namespace Prezentacja.UI.ViewModels
 
         public string ComPort
         {
-            get { return _comPort; }
+            get
+            {
+                return _comPort;
+            }
+
             private set
             {
                 if (_comPort == value) return;
@@ -40,7 +49,11 @@ namespace Prezentacja.UI.ViewModels
 
         public int? DataBit
         {
-            get { return _dataBit; }
+            get
+            {
+                return _dataBit;
+            }
+
             private set
             {
                 if (_dataBit == value) return;
@@ -49,10 +62,14 @@ namespace Prezentacja.UI.ViewModels
                 ConnectCommand.UpdateCanExecuteState();
             }
         }
-        
+
         public int? TransferSpeed
         {
-            get { return _transferSpeed; }
+            get
+            {
+                return _transferSpeed;
+            }
+
             private set
             {
                 if (_transferSpeed == value) return;
@@ -61,10 +78,14 @@ namespace Prezentacja.UI.ViewModels
                 ConnectCommand.UpdateCanExecuteState();
             }
         }
-        
+
         public int? BufforSize
         {
-            get { return _bufforSize; }
+            get
+            {
+                return _bufforSize;
+            }
+
             private set
             {
                 if (_bufforSize == value) return;
@@ -84,15 +105,6 @@ namespace Prezentacja.UI.ViewModels
         {
             get { return _disconnectCommand; }
             set { _disconnectCommand = value; }
-        }
-
-        #endregion
-
-        public SettingsViewModel()
-        {
-            ConnectCommand = new DelegateCommand(OnConnect, CanConnect);
-            DisconnectCommand = new DelegateCommand(OnDisconnect, CanDisconnect);
-            _modemConnection =  Modem.ModemConnection.Instance;
         }
 
         private void OnConnect()

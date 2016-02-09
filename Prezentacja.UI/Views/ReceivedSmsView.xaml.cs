@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace Prezentacja.UI.Views
 {
     /// <summary>
-    /// Interaction logic for ReceivedSmsView.xaml
+    /// Interaction logic for ReceivedSMSView.xaml
     /// </summary>
     public partial class ReceivedSmsView : UserControl
     {

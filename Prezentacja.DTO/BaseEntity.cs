@@ -12,14 +12,17 @@ namespace Prezentacja.Common
 
         public int Id
         {
-            get { return _id; }
-            set 
+            get
+            {
+                return _id;
+            }
+            
+            set
             {
                 if (_id == value) return;
                 _id = value;
                 RaisePropertyChanged(() => Id);
             }
         }
-        
     }
 }
