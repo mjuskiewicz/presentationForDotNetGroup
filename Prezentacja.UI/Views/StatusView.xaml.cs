@@ -1,5 +1,5 @@
-﻿using Prezentacja.UI.ViewModels;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using Prezentacja.UI.ViewModels;
 
 namespace Prezentacja.UI.Views
 {
@@ -11,7 +11,7 @@ namespace Prezentacja.UI.Views
         public StatusView()
         {
             InitializeComponent();
-            this.DataContext = new StatusViewModel(Modem.ModemConnection.Instance);
+            DataContext = new StatusViewModel(Modem.ModemConnection.Instance);
         }
     }
 }

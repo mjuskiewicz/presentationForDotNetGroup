@@ -1,5 +1,5 @@
-﻿using Prezentacja.UI.ViewModels;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using Prezentacja.UI.ViewModels;
 
 namespace Prezentacja.UI.Views
 {

@@ -11,9 +11,19 @@ namespace Prezentacja.UI.ViewModels
         private string _model;
         private string _producer;
 
+        public StatusViewModel(IModemConnection modemConnection)
+        {
+            _modemConnection = modemConnection;
+            _modemConnection.PropertyChanged += OnPropertyChanged;
+        }
+
         public string Model
         {
-            get { return !string.IsNullOrEmpty(_model) ? _model : "nieznany"; }
+            get
+            {
+                return !string.IsNullOrEmpty(_model) ? _model : "nieznany";
+            }
+
             private set
             {
                 if (_model == value) return;
@@ -24,7 +34,11 @@ namespace Prezentacja.UI.ViewModels
 
         public string Producer
         {
-            get { return !string.IsNullOrEmpty(_producer) ? _producer : "nieznany"; }
+            get
+            {
+                return !string.IsNullOrEmpty(_producer) ? _producer : "nieznany";
+            }
+
             private set
             {
                 if (_producer == value) return;
@@ -42,14 +56,8 @@ namespace Prezentacja.UI.ViewModels
         {
             get { return _modemConnection != null && _modemConnection.IsConnected; }
         }
-
-        public StatusViewModel(IModemConnection modemConnection)
-        {
-            _modemConnection = modemConnection;
-            _modemConnection.PropertyChanged += OnPropertyChanged;
-        }
-
-        void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "IsConnected")
             {
@@ -74,6 +82,5 @@ namespace Prezentacja.UI.ViewModels
                 RaisePropertyChanged(() => Status);
             }
         }
-
     }
 }

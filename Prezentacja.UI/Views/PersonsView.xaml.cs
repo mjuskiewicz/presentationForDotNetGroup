@@ -1,6 +1,6 @@
-﻿using Prezentacja.Service;
+﻿using System.Windows.Controls;
+using Prezentacja.Service;
 using Prezentacja.UI.ViewModels;
-using System.Windows.Controls;
 
 namespace Prezentacja.UI.Views
 {

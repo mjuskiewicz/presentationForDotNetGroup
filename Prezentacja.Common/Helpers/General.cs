@@ -6,7 +6,7 @@ namespace Prezentacja.Common.Helpers
 {
     public class General
     {
-        static public List<string> GetAvailableComPorts()
+        public static List<string> GetAvailableComPorts()
         {
             var result = new List<string>();
 
@@ -18,7 +18,7 @@ namespace Prezentacja.Common.Helpers
             return result;
         }
 
-        static public string ExtractPropertyName<T>(Expression<Func<T>> propertyExpression)
+        public static string ExtractPropertyName<T>(Expression<Func<T>> propertyExpression)
         {
             var memberExpression = propertyExpression.Body as MemberExpression;
             return memberExpression.Member.Name;
